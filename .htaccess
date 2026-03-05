@@ -1,0 +1,25 @@
+RewriteEngine On
+
+# Redirect to index.php if file/directory doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Protect sensitive directories
+<FilesMatch "\.(sql|md|gitignore)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Protect config directory
+RedirectMatch 403 ^/config/.*$
+
+# Protect includes directory
+RedirectMatch 403 ^/includes/.*$
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
