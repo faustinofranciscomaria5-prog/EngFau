@@ -1,0 +1,23 @@
+# Environment
+.env
+*.env
+
+# Uploads (keep directory structure)
+uploads/stations/*
+!uploads/stations/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vendor
+vendor/
+
+# Logs
+*.log
